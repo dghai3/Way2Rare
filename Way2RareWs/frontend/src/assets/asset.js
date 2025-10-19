@@ -6,6 +6,7 @@ import profile from "./profile.png";
 import profileg from "./profileg.gif";
 import cart from "./cart.png"; // 
 import cartg from "./cartg.gif";
+import menu from "./menu.png";
 
 export const assets = {
   logo,
@@ -15,16 +16,19 @@ export const assets = {
   profile,
   profileg,
   cart,
-  cartg, 
+  cartg,
+  menu,
 };
 
-export const products = {
-  _id: "0001",
-  name: "Way2Rare Zip Hoodie",
-  description: "Zip Hoodie with Way2Rare Logo",
-  price: 60,
-  image: [],
-  catergory: "Hoodies",
-  sizes: ["S", "M", "L", "XL", "XXL"],
-  current: true,
-};
+export const products = [
+  {
+    _id: "0001",
+    name: "Way2Rare Zip Hoodie",
+    description: "Zip Hoodie with Way2Rare Logo",
+    price: 60,
+    image: [],
+    catergory: "Hoodies",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    current: true,
+  },
+];
