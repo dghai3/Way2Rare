@@ -4,6 +4,8 @@ import search from "./search.svg";
 import searchg from "./searchg.gif";
 import profile from "./profile.png";
 import profileg from "./profileg.gif";
+import cart from "./cart.png"; // 
+import cartg from "./cartg.gif";
 
 export const assets = {
   logo,
@@ -12,6 +14,8 @@ export const assets = {
   searchg,
   profile,
   profileg,
+  cart,
+  cartg, 
 };
 
 export const products = {
