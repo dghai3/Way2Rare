@@ -1,4 +1,5 @@
 import React from 'react';
+import NavyZip from '../assets/NavyZip.png';
 
 const Hero = () => {
   return (
@@ -21,6 +22,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      {/* Hero Right Side */}
+      <img className='w-full sm:w-1/2 ' src={NavyZip}></img>
     </div>
   );
 };
