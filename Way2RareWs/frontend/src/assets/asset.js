@@ -11,16 +11,16 @@ export const assets = {
   search,
   searchg,
   profile,
-  profileg
+  profileg,
 };
 
 export const products = {
-    _id : "0001",
-    name : "Way2Rare Zip Hoodie",
-    description : "Zip Hoodie with Way2Rare Logo",
-    price : 60,
-    image: [],
-    catergory : "Hoodies",
-    sizes : ["S", "M", "L", "XL", "XXL"],
-    current : true
-}
+  _id: "0001",
+  name: "Way2Rare Zip Hoodie",
+  description: "Zip Hoodie with Way2Rare Logo",
+  price: 60,
+  image: [],
+  catergory: "Hoodies",
+  sizes: ["S", "M", "L", "XL", "XXL"],
+  current: true,
+};
