@@ -64,6 +64,7 @@ const Navbar = () => {
             alt='Cart'
           />
         </Link>
+        <img src={assets.menu} className='w-8 cursor-pointer sm:hidden' alt="" />
       </div>
     </div>
   )
