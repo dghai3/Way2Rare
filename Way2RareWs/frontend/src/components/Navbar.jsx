@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { assets } from '../assets/asset.js'
-import { NavLink,Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 
 const Navbar = () => {
-  const [searchHover, setSearchHover] = useState(false)
-  const [profileHover, setProfileHover] = useState(false)
-  const [cartHover, setCartHover] = useState(false)
+  const [visible, setVisible] = useState(false);
+  const [searchHover, setSearchHover] = useState(false);
+  const [profileHover, setProfileHover] = useState(false);
+  const [cartHover, setCartHover] = useState(false);
+
+  const toggleSidebar = () => setVisible(!visible);
 
   return (
     <div className='flex items-center justify-between py-5 font-medium'>
@@ -64,6 +67,21 @@ const Navbar = () => {
             alt='Cart'
           />
         </Link>
+        <img onClick={toggleSidebar} src={assets.menu} className='w-8 cursor-pointer sm:hidden' alt="Menu" />
+      </div>
+      {/* Side Bar menu for small screen */}
+      <div className={`absolute top-0 right-0 h-full bg-white transition-all duration-300 ${visible ? 'w-full' : 'w-0'}`}>
+        {visible && ( // Conditionally render the close button
+          <button onClick={toggleSidebar} className={`absolute top-2 right-2 transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+            <img src={assets.close} alt="Close" className="w-10 h-10" /> {/* Use the close image */}
+          </button>
+        )}
+        <ul className="flex flex-col items-start p-4">
+          <NavLink to='/' onClick={toggleSidebar} className='py-4 text-4xl'>HOME</NavLink>
+          <NavLink to='/collection' onClick={toggleSidebar} className='py-4 text-4xl'>COLLECTION</NavLink>
+          <NavLink to='/about' onClick={toggleSidebar} className='py-4 text-4xl'>ABOUT</NavLink>
+          <NavLink to='/contact' onClick={toggleSidebar} className='py-4 text-4xl'>CONTACT</NavLink>
+        </ul>
       </div>
     </div>
   )
