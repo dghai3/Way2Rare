@@ -7,6 +7,7 @@ import profileg from "./profileg.gif";
 import cart from "./cart.png"; // 
 import cartg from "./cartg.gif";
 import menu from "./menu.png";
+import close from "./close.png";
 
 export const assets = {
   logo,
@@ -18,6 +19,7 @@ export const assets = {
   cart,
   cartg,
   menu,
+  close,
 };
 
 export const products = [
