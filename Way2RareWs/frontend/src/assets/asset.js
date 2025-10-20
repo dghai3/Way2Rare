@@ -8,6 +8,7 @@ import cart from "./cart.png"; //
 import cartg from "./cartg.gif";
 import menu from "./menu.png";
 import close from "./close.png";
+import NavyZip from "./NavyZip.png";
 
 export const assets = {
   logo,
@@ -28,7 +29,7 @@ export const products = [
     name: "Way2Rare Zip Hoodie",
     description: "Zip Hoodie with Way2Rare Logo",
     price: 60,
-    image: [],
+    image: [NavyZip],
     catergory: "Hoodies",
     sizes: ["S", "M", "L", "XL", "XXL"],
     current: true,
