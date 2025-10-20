@@ -1,6 +1,19 @@
-import React, { useState } from 'react'
-import { assets } from '../assets/asset.js'
-import { NavLink, Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { assets } from "../assets/asset.js";
+import { NavLink, Link } from "react-router-dom";
+
+const linkBase =
+  "group flex flex-col items-center gap-1 transition-colors duration-200";
+const linkInactive = "text-gray-400 hover:text-gray-700";
+const linkActive = "text-gray-900";
+
+const Underline = ({ active = false }) => (
+  <span
+    className={`h-[2px] bg-gray-700 transition-all duration-200 rounded 
+      ${active ? "w-3/4 opacity-100" : "w-0 opacity-0 group-hover:w-1/2 group-hover:opacity-100"}`}
+    aria-hidden="true"
+  />
+);
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
@@ -8,83 +21,197 @@ const Navbar = () => {
   const [profileHover, setProfileHover] = useState(false);
   const [cartHover, setCartHover] = useState(false);
 
-  const toggleSidebar = () => setVisible(!visible);
+  const toggleSidebar = () => setVisible((v) => !v);
 
   return (
-    <div className='flex items-center justify-between py-5 font-medium'>
-      <img src={assets.logo} className='w-30' alt='Way2Rare' />
-      <ul className='hidden sm:flex gap-5 text-lg text-gray-700'>
-        <NavLink to='/' className='flex flex-col items-center gap-1'>
-          <p>HOME</p>
-          <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
+    <div className="relative flex items-center justify-between py-5 font-medium">
+      <NavLink to="/"> {/* Make the logo clickable to go back to home */}
+        <img src={assets.logo} className="w-28" alt="Way2Rare" />
+      </NavLink>
+
+      {/* desktop nav */}
+      <ul className="hidden sm:flex gap-6 text-lg">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `${linkBase} ${isActive ? linkActive : linkInactive}`
+          }
+        >
+          {({ isActive }) => (
+            <>
+              <p>HOME</p>
+              <Underline active={isActive} />
+            </>
+          )}
         </NavLink>
-        <NavLink to='/collection' className='flex flex-col items-center gap-1'>
-          <p>COLLECTION</p>
-          <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
+
+        <NavLink
+          to="/collection"
+          className={({ isActive }) =>
+            `${linkBase} ${isActive ? linkActive : linkInactive}`
+          }
+        >
+          {({ isActive }) => (
+            <>
+              <p>COLLECTION</p>
+              <Underline active={isActive} />
+            </>
+          )}
         </NavLink>
-        <NavLink to='/about' className='flex flex-col items-center gap-1'>
-          <p>ABOUT</p>
-          <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
+
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            `${linkBase} ${isActive ? linkActive : linkInactive}`
+          }
+        >
+          {({ isActive }) => (
+            <>
+              <p>ABOUT</p>
+              <Underline active={isActive} />
+            </>
+          )}
         </NavLink>
-        <NavLink to='/contact' className='flex flex-col items-center gap-1'>
-          <p>CONTACT</p>
-          <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
+
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            `${linkBase} ${isActive ? linkActive : linkInactive}`
+          }
+        >
+          {({ isActive }) => (
+            <>
+              <p>CONTACT</p>
+              <Underline active={isActive} />
+            </>
+          )}
         </NavLink>
       </ul>
-      <div className='flex items-center gap-6'>
+
+      {/* right icons */}
+      <div className="flex items-center gap-6">
         <div
           onMouseEnter={() => setSearchHover(true)}
           onMouseLeave={() => setSearchHover(false)}
-          className='flex items-center'
+          className="flex items-center"
         >
           <img
             src={searchHover ? assets.searchg : assets.search}
-            className='w-8 h-8 cursor-pointer'
-            alt='Search'
+            className="w-8 h-8 cursor-pointer transition-transform duration-150 hover:scale-105"
+            alt="Search"
           />
         </div>
+
         <NavLink
-          to="/login" // Link to the profile page
+          to="/login"
           onMouseEnter={() => setProfileHover(true)}
           onMouseLeave={() => setProfileHover(false)}
-          className='flex items-center'
+          className="flex items-center"
         >
           <img
             src={profileHover ? assets.profileg : assets.profile}
-            className='w-8 h-8 cursor-pointer'
-            alt='Profile'
+            className="w-8 h-8 cursor-pointer transition-transform duration-150 hover:scale-105"
+            alt="Profile"
           />
         </NavLink>
+
         <Link
-          to="/cart" // Link to the cart page
+          to="/cart"
           onMouseEnter={() => setCartHover(true)}
           onMouseLeave={() => setCartHover(false)}
-          className='flex items-center'
+          className="flex items-center"
         >
           <img
             src={cartHover ? assets.cartg : assets.cart}
-            className='w-8 h-8 cursor-pointer'
-            alt='Cart'
+            className="w-8 h-8 cursor-pointer transition-transform duration-150 hover:scale-105"
+            alt="Cart"
           />
         </Link>
-        <img onClick={toggleSidebar} src={assets.menu} className='w-8 cursor-pointer sm:hidden' alt="Menu" />
+
+        <img
+          onClick={toggleSidebar}
+          src={assets.menu}
+          className="w-8 cursor-pointer sm:hidden"
+          alt="Menu"
+        />
       </div>
-      {/* Side Bar menu for small screen */}
-      <div className={`absolute top-0 right-0 h-full bg-white transition-all duration-300 ${visible ? 'w-full' : 'w-0'}`}>
-        {visible && ( // Conditionally render the close button
-          <button onClick={toggleSidebar} className={`absolute top-2 right-2 transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-            <img src={assets.close} alt="Close" className="w-10 h-10" /> {/* Use the close image */}
+
+      {/* Backdrop overlay */}
+      {visible && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 z-40"
+          onClick={toggleSidebar} // Close sidebar when clicking on backdrop
+        />
+      )}
+
+      {/* mobile sidebar */}
+      <div
+        className={`fixed top-0 left-0 h-full bg-white shadow-xl transition-[width] duration-300 overflow-hidden sm:hidden ${
+          visible ? "w-2/3" : "w-0"
+        } z-50`}
+      >
+        {visible && (
+          <button
+            onClick={toggleSidebar}
+            className="absolute top-2 right-2 p-2 rounded-lg hover:bg-gray-100 transition"
+            aria-label="Close menu"
+          >
+            <img src={assets.close} alt="Close" className="w-8 h-8" />
           </button>
         )}
-        <ul className="flex flex-col items-start p-4">
-          <NavLink to='/' onClick={toggleSidebar} className='py-4 text-4xl'>HOME</NavLink>
-          <NavLink to='/collection' onClick={toggleSidebar} className='py-4 text-4xl'>COLLECTION</NavLink>
-          <NavLink to='/about' onClick={toggleSidebar} className='py-4 text-4xl'>ABOUT</NavLink>
-          <NavLink to='/contact' onClick={toggleSidebar} className='py-4 text-4xl'>CONTACT</NavLink>
+
+        <ul className="mt-14 flex flex-col items-start p-6 gap-2">
+          <NavLink
+            to="/"
+            onClick={toggleSidebar}
+            className={({ isActive }) =>
+              `w-full py-4 text-3xl transition-colors duration-200 ${
+                isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
+              }`
+            }
+          >
+            HOME
+          </NavLink>
+
+          <NavLink
+            to="/collection"
+            onClick={toggleSidebar}
+            className={({ isActive }) =>
+              `w-full py-4 text-3xl transition-colors duration-200 ${
+                isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
+              }`
+            }
+          >
+            COLLECTION
+          </NavLink>
+
+          <NavLink
+            to="/about"
+            onClick={toggleSidebar}
+            className={({ isActive }) =>
+              `w-full py-4 text-3xl transition-colors duration-200 ${
+                isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
+              }`
+            }
+          >
+            ABOUT
+          </NavLink>
+
+          <NavLink
+            to="/contact"
+            onClick={toggleSidebar}
+            className={({ isActive }) =>
+              `w-full py-4 text-3xl transition-colors duration-200 ${
+                isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
+              }`
+            }
+          >
+            CONTACT
+          </NavLink>
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
