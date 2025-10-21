@@ -1,12 +1,17 @@
-import React from 'react'
-import Hero from '../components/Hero'
+import React from "react";
+import Hero from "../components/Hero";
+import { Slides } from "../assets/asset.js";   // ✅ matches export
+import HeroCarousel from "../components/HeroCarousel";
 
 const Home = () => {
   return (
     <div>
-        <Hero />  {/* Linking header*/}
-    </div>
-  )
-}
+      <HeroCarousel slides={Slides} />  {/* ✅ pass the array of slide objects */}
 
-export default Home
+      <Hero />
+
+    </div>
+  );
+};
+
+export default Home;
