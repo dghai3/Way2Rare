@@ -10,6 +10,8 @@ import menu from "./menu.png";
 import close from "./close.png";
 import NavyZip from "./NavyZip.png";
 import SummerTee from "./SummerTee.png";
+import w2rzip3girls from "./w2rzip3girls.jpeg";
+import w2rzipmodel from "./w2rzipmodel.jpg";
 
 export const assets = {
   logo,
@@ -22,6 +24,9 @@ export const assets = {
   cartg,
   menu,
   close,
+  w2rzip3girls,
+  SummerTee,
+  w2rzipmodel
 };
 
 export const products = [
@@ -41,7 +46,7 @@ export const products = [
 export const Slides = [
   {
     type: "image",
-    src: SummerTee,                 // ✅ was [SummerTee]
+    src: w2rzip3girls,                 // ✅ was [SummerTee]
     alt: "New drop 01",
     kicker: "Way2Rare",
     headline: "FW ‘25 Essentials",
@@ -50,7 +55,7 @@ export const Slides = [
   },
   {
     type: "image",
-    src: NavyZip,                   
+    src: w2rzipmodel,                   
     headline: "The Zip Hoodie",
     cta: { label: "Buy Now", href: "/product/way2rare-zip-hoodie" },
   },
