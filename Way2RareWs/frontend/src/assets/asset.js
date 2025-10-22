@@ -1,21 +1,26 @@
-import logo from "./logo.png";
-import background1 from "./background1.jpg";
-import search from "./search.svg";
-import searchg from "./searchg.gif";
-import profile from "./profile.png";
-import profileg from "./profileg.gif";
-import cart from "./cart.png";
-import cartg from "./cartg.gif";
-import menu from "./menu.png";
-import close from "./close.png";
-import NavyZip from "./NavyZip.png";
-import SummerTee from "./SummerTee.png";
-import w2rzip3girls from "./w2rzip3girls.jpeg";
-import w2rzipmodel from "./w2rzipmodel.jpg";
+// Icons imports
+import logo from './Icons/logo.png'
+import search from './Icons/search.svg'
+import searchg from './Icons/searchg.gif'
+import profile from './Icons/profile.png'
+import profileg from './Icons/profileg.gif'
+import cart from './Icons/cart.png'
+import cartg from './Icons/cartg.gif'
+import menu from './Icons/menu.png'
+import close from './Icons/close.png'
+
+// Model pics imports
+import w2rzip3girls from './model_pics/w2rzip3girls.jpeg'
+import w2rzipmodel from './model_pics/w2rzipmodel.jpg'
+
+// Product pics imports
+import SummerTee from './product_pics/SummerTee.png'
+import NavyZip from './product_pics/NavyZip.png'
+import Pullover from './product_pics/Pullover.png'
 
 export const assets = {
+  // Icons
   logo,
-  background1,
   search,
   searchg,
   profile,
@@ -24,10 +29,16 @@ export const assets = {
   cartg,
   menu,
   close,
+  
+  // Model pics
   w2rzip3girls,
+  w2rzipmodel,
+  
+  // Product pics
   SummerTee,
-  w2rzipmodel
-};
+  NavyZip,
+  Pullover
+}
 
 export const products = [
   {
@@ -40,6 +51,46 @@ export const products = [
     sizes: ["S", "M", "L", "XL", "XXL"],
     current: true,
   },
+  {
+    _id: "0002",
+    name: "Way2Rare Summer Tee",
+    description: "Lightweight summer t-shirt with Way2Rare Logo",
+    price: 25,
+    image: [SummerTee],
+    category: "T-Shirts",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    current: false,
+  },
+  {
+    _id: "0003",
+    name: "Way2Rare Pullover Hoodie",
+    description: "Pullover Hoodie with Bubble Way2Rare Logo",
+    price: 50,
+    image: [Pullover],
+    category: "Hoodies",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    current: false,
+  },
+  {
+    _id: "0004",
+    name: "Way2Rare Retro Zip Hoodie",
+    description: "Retro Style Zip Hoodie with Way2Rare Logo",
+    price: 65,
+    image: [NavyZip],
+    category: "Hoodies",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    current: false,
+  },
+  {
+    _id: "0005",
+    name: "Way2Rare Logo Sweatpants",
+    description: "Comfortable Sweatpants with Way2Rare Logo",
+    price: 40,
+    image: [NavyZip],
+    category: "Bottoms",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    current: false,
+  }
 ];
 
 // ✅ export name matches what you'll import, AND src is a string (not array)
@@ -57,6 +108,6 @@ export const Slides = [
     type: "image",
     src: w2rzipmodel,                   
     headline: "The Zip Hoodie",
-    cta: { label: "Buy Now", href: "/product/way2rare-zip-hoodie" },
+    cta: { label: "Buy Now", href: "/product/0001" },
   },
 ];
