@@ -66,61 +66,59 @@ export default function HeroCarousel({
         <div className="flex">
           {slides.map((s, i) => (
             <div key={i} className="min-w-0 flex-[0_0_100%] relative">
-              {/* media */}
-              <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full">
-                {s.type === "video" ? (
-                  <video
-                    src={s.src}
-                    className="h-full w-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  />
-                ) : (
-                  <img
-                    src={s.src}
-                    alt={s.alt || ""}
-                    className="h-full w-full object-cover"
-                    loading="eager"
-                  />
-                )}
+  {/* media */}
+  <div className="relative aspect-[16/9] w-full">  {/* ✅ locked to 16:9 */}
+    {s.type === "video" ? (
+      <video
+        src={s.src}
+        className="h-full w-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+    ) : (
+      <img
+        src={s.src}
+        alt={s.alt || ""}
+        className="h-full w-full object-cover"
+        loading="eager"
+      />
+    )}
 
-                {/* overlay content */}
-                {s.headline || s.cta ? (
-                  <div className="absolute inset-0 flex items-end sm:items-center">
-                    <div className="p-6 sm:p-12">
-                      <div className="max-w-xl">
-                        {s.kicker && (
-                          <p className="uppercase tracking-widest text-xs sm:text-sm text-white/80 mb-2">
-                            {s.kicker}
-                          </p>
-                        )}
-                        {s.headline && (
-                          <h2 className="text-white text-3xl sm:text-5xl font-semibold leading-tight drop-shadow">
-                            {s.headline}
-                          </h2>
-                        )}
-                        {s.subhead && (
-                          <p className="text-white/90 mt-3 sm:text-lg">
-                            {s.subhead}
-                          </p>
-                        )}
-                        {s.cta && (
-                          <Link
-                            to={s.cta.href}
-                            className="inline-block mt-5 px-6 py-3 bg-white text-gray-900 rounded-full
-                                       hover:bg-white/90 transition"
-                          >
-                            {s.cta.label}
-                          </Link>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ) : null}
-              </div>
-            </div>
+    {/* overlay content */}
+    {s.headline || s.cta ? (
+      <div className="absolute inset-0 flex items-end sm:items-center">
+        <div className="p-6 sm:p-12">
+          <div className="max-w-xl">
+            {s.kicker && (
+              <p className="uppercase tracking-widest text-xs sm:text-sm text-white/80 mb-2">
+                {s.kicker}
+              </p>
+            )}
+            {s.headline && (
+              <h2 className="text-white text-3xl sm:text-5xl font-semibold leading-tight drop-shadow">
+                {s.headline}
+              </h2>
+            )}
+            {s.subhead && (
+              <p className="text-white/90 mt-3 sm:text-lg">{s.subhead}</p>
+            )}
+            {s.cta && (
+              <Link
+                to={s.cta.href}
+                className="inline-block mt-5 px-6 py-3 bg-white text-gray-900 rounded-full hover:bg-white/90 transition"
+              >
+                {s.cta.label}
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+    ) : null}
+  </div>
+</div>
+
           ))}
         </div>
       </div>

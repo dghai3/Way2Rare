@@ -1,5 +1,5 @@
 import React from 'react';
-import NavyZip from '../assets/NavyZip.png';
+import NavyZip from '../assets/product_pics/NavyZip.png';
 
 const Hero = () => {
   return (
