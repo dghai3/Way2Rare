@@ -60,6 +60,20 @@ const Navbar = () => {
         </NavLink>
 
         <NavLink
+          to="/inaction"
+          className={({ isActive }) =>
+            `${linkBase} ${isActive ? linkActive : linkInactive}`
+          }
+        >
+          {({ isActive }) => (
+            <>
+              <p>IN ACTION</p>
+              <Underline active={isActive} />
+            </>
+          )}
+        </NavLink>
+
+        <NavLink
           to="/about"
           className={({ isActive }) =>
             `${linkBase} ${isActive ? linkActive : linkInactive}`
@@ -183,6 +197,18 @@ const Navbar = () => {
             }
           >
             COLLECTION
+          </NavLink>
+
+          <NavLink
+            to="/inaction"
+            onClick={toggleSidebar}
+            className={({ isActive }) =>
+              `w-full py-4 text-3xl transition-colors duration-200 ${
+                isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
+              }`
+            }
+          >
+            IN ACTION
           </NavLink>
 
           <NavLink

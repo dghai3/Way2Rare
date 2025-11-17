@@ -11,6 +11,7 @@ import PlaceOrder from './pages/PlaceOrder'
 import Orders from './pages/Orders'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import InAction from './pages/InAction'
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route path ='/login' element = {<Login/>} />
           <Route path ='/placeorder' element = {<PlaceOrder/>} />
           <Route path = '/orders' element = {<Orders/>} />
+          <Route path = '/inaction' element = {<InAction/>} />
         </Routes>
         <Footer/>
     </div>
