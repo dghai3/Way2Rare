@@ -10,6 +10,7 @@ const Collection = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]);
+  const [sortType, setSortType] = useState("relevant");
 
   const handleCategoryChange = (e) => {
     const value = e.target.value;
@@ -26,8 +27,14 @@ const Collection = () => {
     if (category.length) {
       data = data.filter((item) => category.includes(item.category));
     }
+    // Apply sorting
+    if (sortType === "low-high") {
+      data = [...data].sort((a, b) => a.price - b.price);
+    } else if (sortType === "high-low") {
+      data = [...data].sort((a, b) => b.price - a.price);
+    }
     setFilterProducts(data);
-  }, [products, category]);
+  }, [products, category, sortType]);
 
 
   return (
@@ -60,8 +67,8 @@ const Collection = () => {
         <div className='flex justify-between text-base sm:text-2xl mb-4'>
           <Title text1={'ALL'} text2={'PRODUCTS'} />
           {/* Product Sort */}
-          <select className = 'border-2 bordergray-200 text-sm px-2'>
-            <option value="relavent">Sort by: Relavent</option>
+          <select onChange={(e)=>setSortType(e.target.value)} className = 'border-2 bordergray-200 text-sm px-2'>
+            <option value="relevant" >Sort by: Relevant</option>
             <option value="low-high">Sort by: Low to High</option>
             <option value="high-low">Sort by: High to Low</option>
           </select>
