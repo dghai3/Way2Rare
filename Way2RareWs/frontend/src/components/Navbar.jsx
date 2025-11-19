@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { assets } from "../assets/asset.js";
 import { NavLink, Link } from "react-router-dom";
+import { ShopContext } from "../context/ShopContext";
 
 const linkBase =
   "group flex flex-col items-center gap-1 transition-colors duration-200";
@@ -20,8 +21,12 @@ const Navbar = () => {
   const [searchHover, setSearchHover] = useState(false);
   const [profileHover, setProfileHover] = useState(false);
   const [cartHover, setCartHover] = useState(false);
+  const { setShowSearch } = useContext(ShopContext);
 
   const toggleSidebar = () => setVisible((v) => !v);
+  const toggleSearchBar = () => {
+    setShowSearch((prev) => !prev);
+  };
 
   return (
     <div className="relative flex items-center justify-between py-5 font-medium">
@@ -107,11 +112,14 @@ const Navbar = () => {
         <div
           onMouseEnter={() => setSearchHover(true)}
           onMouseLeave={() => setSearchHover(false)}
-          className="flex items-center"
+          onClick={toggleSearchBar}
+          role="button"
+          aria-label="Toggle search bar"
+          className="flex items-center cursor-pointer"
         >
           <img
             src={searchHover ? assets.searchg : assets.search}
-            className="w-8 h-8 cursor-pointer transition-transform duration-150 hover:scale-105"
+            className="w-8 h-8 transition-transform duration-150 hover:scale-105"
             alt="Search"
           />
         </div>

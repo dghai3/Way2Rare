@@ -7,13 +7,23 @@ export const ShopContextProvider = (props) => {
   const [products, setProducts] = useState(seedProducts);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState('')
+  const [showSearch, setShowSearch] = useState(false);
   const currency = '$';
   const delivery_fee = 10;
   
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  const API_URL = import.meta.env.VITE_API_URL?.trim();
   
   useEffect(() => {
     const loadProducts = async () => {
+      // If no API URL is configured we stay on seed data and avoid a failing network call.
+      if (!API_URL) {
+        setProducts(seedProducts);
+        setError(null);
+        setLoading(false);
+        return;
+      }
+
       try {
         const res = await fetch(`${API_URL}/api/products`);
         if (!res.ok) throw new Error('Failed to fetch products');
@@ -45,7 +55,7 @@ export const ShopContextProvider = (props) => {
     currency,
     delivery_fee,
     loading,
-    error,
+    error, search, setSearch, showSearch, setShowSearch
   };
 
   return (
