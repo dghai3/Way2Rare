@@ -9,6 +9,8 @@ export const ShopContextProvider = (props) => {
   const [error, setError] = useState(null);
   const currency = '$';
   const delivery_fee = 10;
+  const [search, setSearch] = useState('');
+  const [showSearch, setShowSearch] = useState(true);
   
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
   
@@ -41,11 +43,7 @@ export const ShopContextProvider = (props) => {
   }, [API_URL]);
 
   const value = {
-    products,
-    currency,
-    delivery_fee,
-    loading,
-    error,
+    products, currency, delivery_fee, loading, error, search, setSearch, setShowSearch
   };
 
   return (
