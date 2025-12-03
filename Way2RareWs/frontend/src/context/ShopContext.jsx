@@ -11,9 +11,9 @@ export const ShopContextProvider = (props) => {
   const [showSearch, setShowSearch] = useState(false);
   const currency = '$';
   const delivery_fee = 10;
-  
+
   const API_URL = import.meta.env.VITE_API_URL?.trim();
-  
+
   useEffect(() => {
     const loadProducts = async () => {
       // If no API URL is configured we stay on seed data and avoid a failing network call.
@@ -30,6 +30,7 @@ export const ShopContextProvider = (props) => {
         const data = await res.json();
 
         if (Array.isArray(data) && data.length) {
+          console.log('Loaded products from API:', data);
           setProducts(data);
         } else {
           // Fallback to local seed if API returns empty/invalid.
