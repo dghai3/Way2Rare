@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "react": "^19.2.0"
+  },
+  "name": "way2rare",
+  "version": "1.0.0",
+  "description": "",
+  "main": "postcss.config.ignored.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dghai05/Way2Rare.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dghai05/Way2Rare/issues"
+  },
+  "homepage": "https://github.com/dghai05/Way2Rare#readme"
+}

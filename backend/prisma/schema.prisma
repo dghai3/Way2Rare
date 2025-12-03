@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  name      String?
+  role      Role      @default(CUSTOMER)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  addresses Address[]
+  cart      Cart?
+  orders    Order[]
+}
+
+model Address {
+  id        Int      @id @default(autoincrement())
+  street    String
+  city      String
+  state     String
+  zip       String
+  country   String
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  price       Decimal  @db.Decimal(10, 2)
+  images      String[]
+  category    String
+  sizes       String[]
+  isCurrent   Boolean  @default(true)
+  stock       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  cartItems   CartItem[]
+  orderItems  OrderItem[]
+}
+
+model Cart {
+  id        Int        @id @default(autoincrement())
+  userId    Int        @unique
+  user      User       @relation(fields: [userId], references: [id])
+  items     CartItem[]
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id        Int      @id @default(autoincrement())
+  cartId    Int
+  cart      Cart     @relation(fields: [cartId], references: [id])
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
+  size      String
+}
+
+model Order {
+  id            Int         @id @default(autoincrement())
+  userId        Int
+  user          User        @relation(fields: [userId], references: [id])
+  status        OrderStatus @default(PENDING)
+  total         Decimal     @db.Decimal(10, 2)
+  paymentIntent String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  // Snapshot of shipping address at time of order
+  shippingAddress String 
+
+  items OrderItem[]
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Decimal @db.Decimal(10, 2) // Price at time of purchase
+  size      String
+}
+
+model Gallery {
+  id         Int      @id @default(autoincrement())
+  image      String
+  handle     String
+  caption    String?
+  isFeatured Boolean  @default(true)
+  createdAt  DateTime @default(now())
+}
