@@ -13,6 +13,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import InAction from './pages/InAction'
 import SearchBar from './components/SearchBar'
+import SearchBar from './components/SearchBar'
 
 const App = () => {
   return (

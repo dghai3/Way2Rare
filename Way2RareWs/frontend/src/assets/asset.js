@@ -9,14 +9,16 @@ import cartg from './Icons/cartg.gif'
 import menu from './Icons/menu.png'
 import close from './Icons/close.png'
 
-// Model pics imports
-import w2rzip3girls from './model_pics/w2rzip3girls.jpeg'
-import w2rzipmodel from './model_pics/w2rzipmodel.jpg'
+const BASE_URL = "https://rwccduyhfvbsvogsheth.supabase.co/storage/v1/object/public/product%20images";
 
-// Product pics imports
-import SummerTee from './product_pics/SummerTee.png'
-import NavyZip from './product_pics/NavyZip.png'
-import Pullover from './product_pics/Pullover.png'
+// Model pics URLs
+const w2rzip3girls = `${BASE_URL}/model_pics/w2rzip3girls.jpeg`;
+const w2rzipmodel = `${BASE_URL}/model_pics/w2rzipmodel.JPG`;
+
+// Product pics URLs
+const SummerTee = `${BASE_URL}/product_pics/SummerTee.png`;
+const NavyZip = `${BASE_URL}/product_pics/NavyZip.jpeg`;
+const Pullover = `${BASE_URL}/product_pics/Pullover.jpeg`;
 
 export const assets = {
   // Icons
@@ -29,11 +31,11 @@ export const assets = {
   cartg,
   menu,
   close,
-  
+
   // Model pics
   w2rzip3girls,
   w2rzipmodel,
-  
+
   // Product pics
   SummerTee,
   NavyZip,
@@ -106,7 +108,7 @@ export const Slides = [
   },
   {
     type: "image",
-    src: w2rzipmodel,                   
+    src: w2rzipmodel,
     headline: "The Zip Hoodie",
     cta: { label: "Buy Now", href: "/product/0001" },
   },

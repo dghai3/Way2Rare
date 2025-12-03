@@ -7,6 +7,8 @@ export const ShopContextProvider = (props) => {
   const [products, setProducts] = useState(seedProducts);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState('')
+  const [showSearch, setShowSearch] = useState(false);
   const currency = '$';
   const delivery_fee = 10;
   const [search, setSearch] = useState('');
@@ -16,12 +18,21 @@ export const ShopContextProvider = (props) => {
   
   useEffect(() => {
     const loadProducts = async () => {
+      // If no API URL is configured we stay on seed data and avoid a failing network call.
+      if (!API_URL) {
+        setProducts(seedProducts);
+        setError(null);
+        setLoading(false);
+        return;
+      }
+
       try {
         const res = await fetch(`${API_URL}/api/products`);
         if (!res.ok) throw new Error('Failed to fetch products');
         const data = await res.json();
 
         if (Array.isArray(data) && data.length) {
+          console.log('Loaded products from API:', data);
           setProducts(data);
         } else {
           // Fallback to local seed if API returns empty/invalid.

@@ -42,7 +42,7 @@ const Collection = () => {
 
       {/* Filter Options */}
       <div className='min-w-60'>
-        <p onClick={()=>setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2'>FILTERS</p>
+        <p onClick={() => setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2'>FILTERS</p>
         <img className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''}`} src={assets.logo} alt='' />
 
         {/* SubCategory Filter */}
@@ -50,20 +50,20 @@ const Collection = () => {
           <p className='mb-3 text-sm font-medium'>TYPE</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Hoodies'} onChange={handleCategoryChange}/> Hoodies & Zip-Ups
+              <input className='w-3' type="checkbox" value={'Hoodies'} onChange={handleCategoryChange} /> Hoodies & Zip-Ups
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Bottoms'} onChange={handleCategoryChange}/> Sweats / Bottoms
+              <input className='w-3' type="checkbox" value={'Bottoms'} onChange={handleCategoryChange} /> Sweats / Bottoms
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'T-Shirts'} onChange={handleCategoryChange}/> Tees
+              <input className='w-3' type="checkbox" value={'T-Shirts'} onChange={handleCategoryChange} /> Tees
             </p>
           </div>
         </div>
       </div>
 
       {/* Right Side */}
-      <div className= 'flex-1'>
+      <div className='flex-1'>
         <div className='flex justify-between text-base sm:text-2xl mb-4'>
           <Title text1={'ALL'} text2={'PRODUCTS'} />
           {/* Product Sort */}
@@ -77,8 +77,8 @@ const Collection = () => {
         {/* Map Products */}
         <div className='grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6'>
           {
-            filterProducts.map((item, index)=> (
-              <ProductItem key={index} name = {item.name} price = {item.price} id = {item._id} image = {item.image} />
+            filterProducts.map((item, index) => (
+              <ProductItem key={index} name={item.name} price={item.price} id={item.id} image={item.images} />
             ))
           }
         </div>

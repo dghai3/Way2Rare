@@ -1,27 +1,24 @@
-
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Title from "../components/Title";
-import IMG_1816 from "../assets/model_pics/IMG_1816.JPG";
-import IMG_2078 from "../assets/model_pics/IMG_2078.JPG";
-import IMG_2298 from "../assets/model_pics/IMG_2298.JPG";
-import IMG_2353 from "../assets/model_pics/IMG_2353.JPG";
-import IMG_2393 from "../assets/model_pics/IMG_2393.JPG";
-import IMG_3137 from "../assets/model_pics/IMG_3137.jpeg";
-import IMG_3334 from "../assets/model_pics/IMG_3334.jpeg";
-import IMG_3458 from "../assets/model_pics/IMG_3458.jpeg";
-
-const influencerPosts = [
-  { id: "post-1", image: IMG_1816, handle: "@slattinson" },
-  { id: "post-2", image: IMG_2078, handle: "@mrrvin.whispr" },
-  { id: "post-3", image: IMG_2298, handle: "@phucbui0" },
-  { id: "post-4", image: IMG_2353, handle: "@louis.jndr" },
-  { id: "post-5", image: IMG_2393, handle: "@way2rare" },
-  { id: "post-6", image: IMG_3137, handle: "@rare.collective" },
-  { id: "post-7", image: IMG_3334, handle: "@urban.archive" },
-  { id: "post-8", image: IMG_3458, handle: "@latecheckout" },
-];
 
 const InAction = () => {
+  const [influencerPosts, setInfluencerPosts] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL;
+
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/gallery`);
+        if (!res.ok) throw new Error('Failed to fetch gallery');
+        const data = await res.json();
+        setInfluencerPosts(data);
+      } catch (error) {
+        console.error("Error loading gallery:", error);
+      }
+    };
+    fetchGallery();
+  }, [API_URL]);
+
   return (
     <div className="pt-10 border-t">
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
