@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { products as seedProducts } from "../assets/asset";
+import { useNavigate } from "react-router-dom";
 
 export const ShopContext = createContext();
 export const ShopContextProvider = (props) => {
@@ -11,6 +12,9 @@ export const ShopContextProvider = (props) => {
   const delivery_fee = 10;
   const [search, setSearch] = useState('');
   const [showSearch, setShowSearch] = useState(true);
+
+  const [token, setToken] = useState('');
+  const navigate = useNavigate();
 
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
@@ -51,8 +55,15 @@ export const ShopContextProvider = (props) => {
     loadProducts();
   }, [API_URL]);
 
+  useEffect(() => {
+    if (!token && localStorage.getItem('token')) {
+      setToken(localStorage.getItem('token'));
+    }
+  }, []);
+
   const value = {
-    products, currency, delivery_fee, loading, error, search, setSearch, setShowSearch
+    products, currency, delivery_fee, loading, error, search, setSearch, setShowSearch,
+    token, setToken, navigate
   };
 
   return (

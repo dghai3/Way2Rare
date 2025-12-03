@@ -21,7 +21,13 @@ const Navbar = () => {
   const [searchHover, setSearchHover] = useState(false);
   const [profileHover, setProfileHover] = useState(false);
   const [cartHover, setCartHover] = useState(false);
-  const { setShowSearch } = useContext(ShopContext);
+  const { setShowSearch, navigate, token, setToken } = useContext(ShopContext);
+
+  const logout = () => {
+    navigate('/login');
+    localStorage.removeItem('token');
+    setToken('');
+  }
 
   const toggleSidebar = () => setVisible((v) => !v);
   const toggleSearchBar = () => {
@@ -124,19 +130,6 @@ const Navbar = () => {
           />
         </div>
 
-        <NavLink
-          to="/login"
-          onMouseEnter={() => setProfileHover(true)}
-          onMouseLeave={() => setProfileHover(false)}
-          className="flex items-center"
-        >
-          <img
-            src={profileHover ? assets.profileg : assets.profile}
-            className="w-8 h-8 cursor-pointer transition-transform duration-150 hover:scale-105"
-            alt="Profile"
-          />
-        </NavLink>
-
         <Link
           to="/cart"
           onMouseEnter={() => setCartHover(true)}
@@ -149,6 +142,27 @@ const Navbar = () => {
             alt="Cart"
           />
         </Link>
+
+        <div className='group relative'>
+          <Link to='/login'>
+            <img
+              src={profileHover ? assets.profileg : assets.profile}
+              className="w-8 h-8 cursor-pointer transition-transform duration-150 hover:scale-105"
+              alt="Profile"
+              onMouseEnter={() => setProfileHover(true)}
+              onMouseLeave={() => setProfileHover(false)}
+            />
+          </Link>
+          {/* Dropdown Menu */}
+          {token &&
+            <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-50'>
+              <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-white text-gray-500 rounded shadow-lg border border-gray-200'>
+                <p onClick={() => navigate('/orders')} className='cursor-pointer hover:text-black'>Orders</p>
+                <p onClick={logout} className='cursor-pointer hover:text-black'>Logout</p>
+              </div>
+            </div>
+          }
+        </div>
 
         <img
           onClick={toggleSidebar}
@@ -168,9 +182,8 @@ const Navbar = () => {
 
       {/* mobile sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full bg-white shadow-xl transition-[width] duration-300 overflow-hidden sm:hidden ${
-          visible ? "w-2/3" : "w-0"
-        } z-50`}
+        className={`fixed top-0 left-0 h-full bg-white shadow-xl transition-[width] duration-300 overflow-hidden sm:hidden ${visible ? "w-2/3" : "w-0"
+          } z-50`}
       >
         {visible && (
           <button
@@ -187,8 +200,7 @@ const Navbar = () => {
             to="/"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `w-full py-4 text-3xl transition-colors duration-200 ${
-                isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
+              `w-full py-4 text-3xl transition-colors duration-200 ${isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
               }`
             }
           >
@@ -199,8 +211,7 @@ const Navbar = () => {
             to="/collection"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `w-full py-4 text-3xl transition-colors duration-200 ${
-                isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
+              `w-full py-4 text-3xl transition-colors duration-200 ${isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
               }`
             }
           >
@@ -211,8 +222,7 @@ const Navbar = () => {
             to="/inaction"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `w-full py-4 text-3xl transition-colors duration-200 ${
-                isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
+              `w-full py-4 text-3xl transition-colors duration-200 ${isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
               }`
             }
           >
@@ -223,8 +233,7 @@ const Navbar = () => {
             to="/about"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `w-full py-4 text-3xl transition-colors duration-200 ${
-                isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
+              `w-full py-4 text-3xl transition-colors duration-200 ${isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
               }`
             }
           >
@@ -235,8 +244,7 @@ const Navbar = () => {
             to="/contact"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `w-full py-4 text-3xl transition-colors duration-200 ${
-                isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
+              `w-full py-4 text-3xl transition-colors duration-200 ${isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-700"
               }`
             }
           >
