@@ -10,10 +10,9 @@ const Home = () => {
     <div>
       <HeroCarousel slides={Slides} />  {/* ✅ pass the array of slide objects */}
 
-      <Hero />
+
       <OurPolicy />
       <NewsletterBox />
-
     </div>
   );
 };

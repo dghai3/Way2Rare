@@ -26,9 +26,9 @@ const Vault1 = () => {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
         {vaultProducts.map((item, index) => (
           <ProductItem
-            key={item._id ?? index}
-            id={item._id}
-            image={item.image}
+            key={item.id ?? index}
+            id={item.id}
+            image={item.images}
             name={item.name}
             price={item.price}
           />
